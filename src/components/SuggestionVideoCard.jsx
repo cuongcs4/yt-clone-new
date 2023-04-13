@@ -19,7 +19,6 @@ const SuggestionVideoCard = ({ video }) => {
   const [live, setLive] = useState(false);
   const [view, setView] = useState();
   const seconds = moment.duration(duration).asSeconds();
-  console.log(seconds);
 
   useEffect(() => {
     const get_video_details = async () => {
