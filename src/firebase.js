@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_YOUTUBE_API_KEY,
+  apiKey: 'AIzaSyB68NteY8z7quAqpjqo4J3gGTPJLa8bRV8',
   authDomain: "clone-319704.firebaseapp.com",
   projectId: "youtube-clone-319704",
   storageBucket: "youtube-clone-319704.appspot.com",

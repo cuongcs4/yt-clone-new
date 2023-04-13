@@ -16,7 +16,7 @@ const Feed = () => {
       }`}>
       {/* <LeftNav /> */}
       <div className="grow h-full overflow-y-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 gap-4 md:p-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 gap-4 md:p-5">
           {!loading &&
             searchResults.map((item) => {
               if (item.id.kind !== "youtube#video") return false;

@@ -9,6 +9,7 @@ const SuggestionVideoCard = ({ video }) => {
   const {
     id,
     snippet: {
+      channelId,
       channelTitle,
       title,
       publishedAt,
@@ -38,7 +39,7 @@ const SuggestionVideoCard = ({ video }) => {
   }, [id?.videoId]);
 
   return (
-    <Link to={`/video/_id/${id}/_channel/${video?.snippet?.channelId}`}>
+    <Link to={`/video/_id/${id?.videoId}/_channel/${channelId}`}>
       <div className="flex mb-3">
         <div className="relative h-24 lg:h-20 xl:h-24 w-40 min-w-[160px] lg:w-32 lg:min-w-[128px] xl:w-40 xl:min-w-[160px] rounded-xl bg-slate-800 overflow-hidden">
           <img
