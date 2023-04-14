@@ -6,7 +6,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOG_OUT,
-} from "../reducers/actionType";
+} from "../actionType";
 
 export const login = () => async (dispatch) => {
   try {

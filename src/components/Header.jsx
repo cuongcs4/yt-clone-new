@@ -20,7 +20,8 @@ const Header = () => {
 
   const { loading, mobileMenu, setMobileMenu } = useContext(Context);
 
-  const user = useSelector((state) => JSON.parse(state.auth.user));
+  const user = useSelector((state) => state.auth.user);
+
   const navigate = useNavigate();
 
   const searchQueryHandler = (event) => {

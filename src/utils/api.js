@@ -24,7 +24,7 @@ export const fetchDataFromApi = async (query) => {
   const { data } = await request(query, {
     params: {
       part: "snippet",
-      maxResults: 5,
+      maxResults: 15,
     },
   });
   return data;
