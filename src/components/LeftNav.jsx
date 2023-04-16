@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FiLogOut } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,9 +7,11 @@ import { log_out } from "../redux/actions/auth.action";
 import { categories } from "../utils/constants";
 
 import LeftNavMenuItem from "./LeftNavMenuItem";
+import Popup from "./Popup";
 
 const LeftNav = () => {
   const { setSelectedCategory, mobileMenu } = useContext(Context);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -29,6 +31,20 @@ const LeftNav = () => {
 
   const logoutHandler = () => {
     dispatch(log_out());
+  };
+
+  const handleConfirm = () => {
+    // perform the delete operation
+    setShowConfirm(false);
+    logoutHandler();
+  };
+
+  const handleCancel = () => {
+    setShowConfirm(false);
+  };
+
+  const handleLogout = () => {
+    setShowConfirm(true);
   };
 
   return (
@@ -57,15 +73,22 @@ const LeftNav = () => {
         })}
         <hr className="my-5 dark:border-white/[0.2] border-black/[0.5]" />
         <div
-          className="px-3 flex items-center dark:text-white cursor-pointer h-10"
-          onClick={() => {
-            logoutHandler();
-            navigate("/auth");
-          }}>
+          className="px-3 flex items-center dark:text-white h-10 cursor-pointer"
+          onClick={handleLogout}>
           <span className="text-xl ml-5">
             <FiLogOut />
           </span>
-          <span className={mobileMenu ? "ml-5" : "hidden"}>Log out</span>
+          <button
+            className={`${mobileMenu ? "ml-5" : "hidden"} cursor-pointer`}>
+            Log out
+          </button>
+          {showConfirm && (
+            <Popup
+              onConfirm={handleConfirm}
+              onCancel={handleCancel}
+              message={`Are you sure to log out?`}
+            />
+          )}
         </div>
         <hr className="my-5 dark:border-white/[0.2] border-black/[0.5]" />
 

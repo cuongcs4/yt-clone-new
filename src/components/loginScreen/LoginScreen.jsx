@@ -23,7 +23,7 @@ const LoginScreen = () => {
       <div
         div
         className="login dark:bg-[#0F0F0F] grid place-items-center h-screen">
-        <div className="login__container w-[500px] dark:bg-slate-600 rounded-md p-8 my-4 flex flex-col items-center">
+        <div className="login__container w-auto md:w-[500px] dark:bg-slate-600 rounded-md p-8 my-4 flex flex-col items-center">
           <h2 className="font-semibold text-lg">Youtube Clone</h2>
           <img
             className="w-32 h-32 object-contain"

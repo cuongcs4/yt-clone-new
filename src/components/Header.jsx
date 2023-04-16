@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../context/contextApi";
 import Loader from "../shared/loader";
@@ -7,6 +7,7 @@ import { SlMenu } from "react-icons/sl";
 import { IoIosSearch } from "react-icons/io";
 import { RiVideoAddLine } from "react-icons/ri";
 import { FiBell } from "react-icons/fi";
+import { BsToggle2Off, BsToggle2On } from "react-icons/bs";
 
 import ytLogo from "../images/yt-logo.png";
 import ytLogoMobile from "../images/yt-logo-mobile.png";
@@ -20,7 +21,9 @@ const Header = () => {
 
   const { loading, mobileMenu, setMobileMenu } = useContext(Context);
 
-  const user = useSelector((state) => state.auth.user);
+  const userString = useSelector((state) => state.auth.user);
+  const user =
+    typeof userString === "string" ? JSON.parse(userString) : userString;
 
   const navigate = useNavigate();
 
@@ -37,11 +40,21 @@ const Header = () => {
     setMobileMenu(!mobileMenu);
   };
 
-  // const { pathname } = useLocation();
-  // const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const switchTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
-    <div className="fixed w-full top-0 z-50 flex flex-row items-center justify-between h-14 px-4 md:px-5 dark:bg-[#0F0F0F] bg-white">
+    <div className="fixed w-full top-0 z-40 flex flex-row items-center justify-between h-14 px-4 md:px-5 dark:bg-[#0F0F0F] bg-white">
       {loading && <Loader />}
       <div className="flex h-5 items-center">
         {/* {pageName !== "video" && (
@@ -99,6 +112,15 @@ const Header = () => {
       </div>
       <div className="flex items-center">
         <div className="hidden md:flex">
+          <div
+            className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]"
+            onClick={switchTheme}>
+            {theme === "light" ? (
+              <BsToggle2Off className=" text-xl cursor-pointer" />
+            ) : (
+              <BsToggle2On className="text-xl text-white cursor-pointer" />
+            )}
+          </div>
           <div className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]">
             <RiVideoAddLine className="dark:text-white text-xl cursor-pointer" />
           </div>
